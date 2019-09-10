@@ -13,7 +13,6 @@ ActiveRecord::Schema.define do
     t.string :activity_type
     t.text :data           
     t.string :tracked_type
-    t.string :ip_address
   end
 
   create_table :users, force: true do |t|

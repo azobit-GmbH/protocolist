@@ -9,7 +9,6 @@ module Protocolist
 
       def initialize_protocolist
         Protocolist.actor = current_user
-        Protocolist.ip_address = request.remote_ip
         Protocolist.activity_class = Activity
       end
     end
