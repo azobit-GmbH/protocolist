@@ -1,13 +1,5 @@
 require "spec_helper"
 
-class User < SuperModel::Base
-
-end
-
-class Activity < SuperModel::Base
-
-end
-
 describe Protocolist do
   let(:actor) { User.new(name: 'Bill') }
   let(:another_actor) { User.new(name: 'Bob') }

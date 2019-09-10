@@ -1,51 +1,5 @@
 require "spec_helper"
 
-class Firestarter < SuperModel::Base
-  include Protocolist::ModelAdditions
-
-  def delete
-    fire :delete, target: false
-  end
-
-  def myself
-    fire :myself
-  end
-
-  def love_letter_for_mary(target, data)
-    fire :love_letter, target: target, data: data
-  end
-end
-
-class SimpleFirestarter < SuperModel::Base
-  include Protocolist::ModelAdditions
-  fires :create
-end
-
-class ConditionalFirestarter < SuperModel::Base
-  include Protocolist::ModelAdditions
-
-  fires :i_will_be_saved, on: :create, if: :return_true_please
-  fires :and_i_won_t,     on: :create, if: :return_false_please
-
-  def return_false_please
-    false
-  end
-
-  def return_true_please
-    true
-  end
-end
-
-class ComplexFirestarter < SuperModel::Base
-  include Protocolist::ModelAdditions
-
-  fires :yohoho, on: [:create, :destroy], target: false, data: :hi
-
-  def hi
-    'Hi!'
-  end
-end
-
 describe Protocolist::ModelAdditions do
   let(:actor) { User.new(name: 'Bill') }
   let(:mary) { User.new(name: 'Mary') }
@@ -79,13 +33,13 @@ describe Protocolist::ModelAdditions do
       activity.target.should        == firestarter
     end
 
-    it 'saves record without target if target set to false' do
+    it 'saves record without target if target set to nil' do
       expect { firestarter.delete }.to change { Activity.count }.by(1)
 
       activity = Activity.last
       activity.actor.should         == actor
       activity.activity_type.should == :delete
-      activity.target.should        be_false
+      activity.target.should        be_nil
     end
   end
 

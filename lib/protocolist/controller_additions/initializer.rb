@@ -4,7 +4,7 @@ module Protocolist
       extend ActiveSupport::Concern
 
       included do
-        before_filter :initialize_protocolist
+        before_action :initialize_protocolist
       end
 
       def initialize_protocolist

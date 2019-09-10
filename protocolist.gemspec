@@ -18,12 +18,13 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency 'activesupport', '~> 3.0'
+  s.add_dependency 'activesupport', '~> 5.0'
 
+
+  s.add_development_dependency 'activerecord'
+  s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 2.11.0'
   s.add_development_dependency 'guard-rspec', '~> 1.2.0'
-  s.add_development_dependency 'supermodel', '~> 0.1.6'
-  s.add_development_dependency 'psych', '~> 1.3.0' # fixes ' superclass mismatch for class Mark ' error
-  s.add_development_dependency 'railties', '~> 3.0'
+  s.add_development_dependency 'railties', '~> 5.0'
 end
